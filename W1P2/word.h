@@ -23,7 +23,6 @@ namespace sdds {
       char m_definiton[MAX_DEFINITIONS][MAX_DEFINITIONS_CHARS + 1] = {};
    };
 
-   /*extern struct dictionary Dictionary;*/
 
    /// <summary>
    /// Search in the dictionary for the word and display all the definitions found.
