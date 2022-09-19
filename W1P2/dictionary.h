@@ -19,7 +19,7 @@ namespace sdds {
       word m_words[MAX_WORDS];
    };
 
-
+   extern dictionary Dictionary;
 
    /// <summary>
 /// Load from a file a set of words with their definition.  Any previous
