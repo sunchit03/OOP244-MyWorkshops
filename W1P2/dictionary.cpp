@@ -28,8 +28,8 @@ namespace sdds {
             if (fscanf(sfptr, "%s\n", Dictionary.m_words[i].m_word) == 1) {      // word
                Dictionary.m_totalWords++;
                out = 0;
-               for (int j = 0; j < MAX_DEFINITIONS && out == 0; j++) {
-                  if (fscanf(sfptr, "\t%[^:\n]: ", Dictionary.m_words[i].m_type[j]) == 1) {        // type
+                for (int j = 0; j < MAX_DEFINITIONS && out == 0; j++) {
+                  if (fscanf(sfptr, "\t%[^:]: ", Dictionary.m_words[i].m_type[j]) == 1) {        // type
                      if (fscanf(sfptr, "%[^\n]", Dictionary.m_words[i].m_definiton[j]) == 1) {     // definition
                         int c1 = fgetc(sfptr);
                         int c2 = fgetc(sfptr);

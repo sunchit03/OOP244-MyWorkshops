@@ -19,8 +19,8 @@ namespace sdds {
    struct word {
       char m_word[MAX_WORD_CHARS + 1] = "";
       int m_numberDefinitions = 0;
-      char m_type[MAX_DEFINITIONS][MAX_WORD_CHARS + 1] = {};
-      char m_definiton[MAX_DEFINITIONS][MAX_DEFINITIONS_CHARS + 1] = {};
+      char m_type[MAX_DEFINITIONS][MAX_WORD_CHARS + 1];
+      char m_definiton[MAX_DEFINITIONS][MAX_DEFINITIONS_CHARS + 1];
    };
 
 
