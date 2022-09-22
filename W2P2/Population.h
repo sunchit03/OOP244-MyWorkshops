@@ -5,8 +5,8 @@ namespace sdds {
    const int PC_CHARS = 3;
 
    struct PCpopulation {
-      char* PC;
-      int* population;
+      char* m_PC;
+      int* m_population;
    };
 
    bool readPCP(PCpopulation& PCp, const char* filename);
@@ -16,5 +16,6 @@ namespace sdds {
    void display(void);
 
    void deallocateMemory(void);
+
 }
 #endif // SDDS_POPULATION_H_

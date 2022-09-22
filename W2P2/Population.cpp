@@ -15,10 +15,9 @@ namespace sdds {
       bool retVal = false;
 
       if (fscanf(fptr, "%[^,],%d\n", tempStr, &tempInt) == 2) {
-         PCp.PC = new char(strlen(tempStr) + 1);
-         PCp.population = new int(tempInt);
-
-         strcpy(PCp.PC, tempStr);
+         PCp.m_PC = new char[strlen(tempStr) + 1];
+         PCp.m_population = new int(tempInt);
+         strcpy(PCp.m_PC, tempStr);
 
          retVal = true;
       }
@@ -58,25 +57,43 @@ namespace sdds {
    }
 
    void display() {
+      //int recCount;
+      int tempPop;
+      int totalPop = 0;
       cout << "Postal Code : population" << endl;
       cout << "-------------------------" << endl;
 
+      for (int i = 0; i < 15; i++) {
 
+         for (int j = i + 1; j < 15; j++) {
+            if (*PCpop[i].m_population > *PCpop[j].m_population) {
+
+               tempPop = *PCpop[i].m_population;
+               *PCpop[i].m_population = *PCpop[j].m_population;
+               *PCpop[j].m_population = tempPop;
+            }
+         }
+      }
+
+      for (int i = 0; i < 15; i++) {
+         cout << i + 1 << "- " << PCpop[i].m_PC << ":  " << *PCpop[i].m_population << endl;
+         totalPop += *PCpop[i].m_population;
+      }
 
       cout << "-------------------------" << endl;
-      cout << "Population of Canada : " << endl;
+      cout << "Population of Canada : " << totalPop << endl;
    }
 
    void deallocateMemory() {
-      int recCount = noOfRecords();
 
-      for (int i = 0; i < recCount; i++) {
-         delete[] PCpop[i].PC;
-         PCpop[i].PC = nullptr;
-         delete PCpop[i].population;
-         PCpop[i].population = nullptr;
+      for (int i = 0; i < 15; i++) {
+         delete[] PCpop[i].m_PC;
+         PCpop[i].m_PC = nullptr;
+         delete PCpop[i].m_population;
+         PCpop[i].m_population = nullptr;
       }
 
       delete[] PCpop;
+      PCpop = nullptr;
    }
 }
