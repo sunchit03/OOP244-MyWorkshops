@@ -9,6 +9,12 @@ namespace sdds {
       int* population;
    };
 
+   bool readPCP(PCpopulation& PCp, const char* filename);
+
    bool load(const char* filename);
+
+   void display(void);
+
+   void deallocateMemory(void);
 }
 #endif // SDDS_POPULATION_H_

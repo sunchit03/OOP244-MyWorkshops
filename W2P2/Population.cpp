@@ -57,4 +57,26 @@ namespace sdds {
       return retVal;
    }
 
+   void display() {
+      cout << "Postal Code : population" << endl;
+      cout << "-------------------------" << endl;
+
+
+
+      cout << "-------------------------" << endl;
+      cout << "Population of Canada : " << endl;
+   }
+
+   void deallocateMemory() {
+      int recCount = noOfRecords();
+
+      for (int i = 0; i < recCount; i++) {
+         delete[] PCpop[i].PC;
+         PCpop[i].PC = nullptr;
+         delete PCpop[i].population;
+         PCpop[i].population = nullptr;
+      }
+
+      delete[] PCpop;
+   }
 }
