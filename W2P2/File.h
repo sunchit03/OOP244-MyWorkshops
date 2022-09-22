@@ -24,5 +24,6 @@ namespace sdds {
    // of the records in the file
    int noOfRecords();
 
+   extern FILE* fptr;
 }
 #endif // !SDDS_FILE_H_

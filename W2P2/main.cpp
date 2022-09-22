@@ -22,9 +22,9 @@ int main() {
    // if loading of the population recrods into the dynamic memroy is successful
    if (load("PCpopulations.csv")) {
       // display all the records
-      display();
+      //display();
    }
    // in any case delete the dynmaic memory if it is allocated
-   deallocateMemory();
+   //deallocateMemory();
    return 0;
 }
