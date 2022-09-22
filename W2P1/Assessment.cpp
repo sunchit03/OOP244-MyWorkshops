@@ -2,7 +2,7 @@
 Full Name: Sunchit Singh
 Email    : sunchit-singh@myseneca.ca
 StudentID: 169146214
-Date     : September 20, 2022
+Date     : September 21, 2022
 */
 
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
@@ -14,32 +14,37 @@ Date     : September 20, 2022
 
 namespace sdds {
 
+   // reads the value at the top of the file indicating the number of records
+   // returns true if read is successful, otherwise false
    bool read(int& value, FILE* fptr) {
       bool check{};
       check = (fscanf(fptr, "%d\n", &value) == 1);
       return check;
    }
 
+   // reads the mark
+   // returns true if read is successful, otherwise false
    bool read(double& value, FILE* fptr) {
       bool check{};
       check = (fscanf(fptr, "%lf", &value) == 1);
       return check;
    }
 
+   // reads the course title
+   // returns true if read is successful, otherwise false
    bool read(char* cstr, FILE* fptr) {
       bool check{};
       check = (fscanf(fptr, ",%60[^\n]\n", cstr) == 1);
       return check;
    }
 
+   // reads values and allocates them dynamically
+   // returns true if read is successful, otherwise false
    bool read(Assessment& asmnt, FILE* fptr) {
-      bool check{}, check1{}, check2{};
+      bool check{};
       double mark;
       char title[61] = "";
-      check1 = read(mark, fptr);
-      check2 = read(title, fptr);
-
-      check = check1 && check2;
+      check = read(mark, fptr) && read(title, fptr);
 
       if (check) {
          asmnt.m_mark = new double(mark);
@@ -50,6 +55,7 @@ namespace sdds {
       return check;
    }
 
+   // deallocates the dynamic memory used
    void freeMem(Assessment*& aptr, int size) {
 
       for (int i = 0; i < size; i++) {
@@ -65,6 +71,8 @@ namespace sdds {
 
    }
 
+   // reads and returns the total number of records
+   // in case of success, otherwise 0
    int read(Assessment*& aptr, FILE* fptr) {
       int cnt;
       int lastval;
@@ -78,12 +86,12 @@ namespace sdds {
          check = read(aptr[i], fptr);
          lastval = i;
       }
-      if (!check) {
-         freeMem(aptr, lastval);
+      if (lastval != cnt && !check) {        // failure
 
+         freeMem(aptr, lastval);
          returnVal = 0;
       }
-      else {
+      else {                                 // success
          returnVal = cnt;
       }
       return returnVal;
