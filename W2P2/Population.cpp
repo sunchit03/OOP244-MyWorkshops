@@ -1,7 +1,17 @@
+/*
+Full Name: Sunchit Singh
+Email    : sunchit-singh@myseneca.ca
+StudentID: 169146214
+Date     : September 21, 2022
+*/
+
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Population.h"
 #include "File.h"
+#include "Utils.h"
 
 using namespace std;
 namespace sdds {
@@ -10,34 +20,21 @@ namespace sdds {
    Counter cnt{};
    
 
-   bool readPCP(PCpopulation& PCp, const char* filename) {
-      char tempStr[PC_CHARS + 1] = "";
-      int tempInt = 0;
-      bool retVal = false;
+   //bool readPCP(PCpopulation& PCp, const char* filename) {
+   //   char tempStr[PC_CHARS + 1] = "";
+   //   int tempInt = 0;
+   //   bool retVal = false;
 
-      if (fscanf(fptr, "%[^,],%d\n", tempStr, &tempInt) == 2) {
-         PCp.m_PC = new char[strlen(tempStr) + 1];
-         PCp.m_population = new int(tempInt);
-         strcpy(PCp.m_PC, tempStr);
+   //   if (fscanf(fptr, "%[^,],%d\n", tempStr, &tempInt) == 2) {
+   //      PCp.m_PC = new char[strlen(tempStr) + 1];
+   //      PCp.m_population = new int(tempInt);
+   //      strcpy(PCp.m_PC, tempStr);
 
-         retVal = true;
-      }
-      return retVal;
-   }
+   //      retVal = true;
+   //   }
+   //   return retVal;
+   //}
 
-   /*int readLines(const char* filename) {
-      int retVal;
-      if (openFile(filename)) {
-         int recCount = noOfRecords();
-         PCpop = new PCpopulation[recCount];
-         retVal = recCount;
-      }
-      else {
-         cout << "Could not open data file : " << filename << endl;
-         retVal = 0;
-      }
-      return retVal;
-   }*/
 
    bool load(const char* filename) {
 

@@ -1,6 +1,14 @@
+/*
+Full Name: Sunchit Singh
+Email    : sunchit-singh@myseneca.ca
+StudentID: 169146214
+Date     : September 21, 2022
+*/
+
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
 #ifndef SDDS_POPULATION_H_
 #define SDDS_POPULATION_H_
-#include "Utils.h"
 namespace sdds {
 
    const int PC_CHARS = 3;
@@ -14,10 +22,6 @@ namespace sdds {
    struct Counter {
       int recordsCnt;
    };
-
-   //extern struct PCpopulation *PCpop;
-
-   bool readPCP(PCpopulation& PCp, const char* filename);
 
    bool load(const char* filename);
 
