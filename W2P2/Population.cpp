@@ -7,6 +7,7 @@ using namespace std;
 namespace sdds {
 
    PCpopulation* PCpop = nullptr;
+   Counter cnt{};
    
 
    bool readPCP(PCpopulation& PCp, const char* filename) {
@@ -24,24 +25,37 @@ namespace sdds {
       return retVal;
    }
 
+   /*int readLines(const char* filename) {
+      int retVal;
+      if (openFile(filename)) {
+         int recCount = noOfRecords();
+         PCpop = new PCpopulation[recCount];
+         retVal = recCount;
+      }
+      else {
+         cout << "Could not open data file : " << filename << endl;
+         retVal = 0;
+      }
+      return retVal;
+   }*/
 
    bool load(const char* filename) {
 
       bool check = true;
       int count = 0;
       bool retVal{};
-      int recCount;
+      //int recCount;
       
       if (openFile(filename)) {
-         recCount = noOfRecords();
-         PCpop = new PCpopulation[recCount];
+         cnt.recordsCnt = noOfRecords();
+         PCpop = new PCpopulation[cnt.recordsCnt];
 
-         for (int i = 0; i < recCount && check; i++) {
+         for (int i = 0; i < cnt.recordsCnt && check; i++) {
             check = readPCP(PCpop[i], filename);
             count = i;
          }
 
-         if (count != recCount && !check) {
+         if (count != cnt.recordsCnt && !check) {
             cout << "Error: incorrect number of records read; the data is possibly corrupted!" << endl;
             retVal = false;
          }
@@ -57,40 +71,56 @@ namespace sdds {
    }
 
    void display() {
-      //int recCount;
       int tempPop;
+      char tempPC[PC_CHARS + 1] = "";
       int totalPop = 0;
-      cout << "Postal Code : population" << endl;
+
+      cout << "Postal Code: population" << endl;
       cout << "-------------------------" << endl;
 
-      for (int i = 0; i < 15; i++) {
+      for (int i = 0; i < cnt.recordsCnt; i++) {
 
-         for (int j = i + 1; j < 15; j++) {
+         for (int j = i + 1; j < cnt.recordsCnt; j++) {
             if (*PCpop[i].m_population > *PCpop[j].m_population) {
 
                tempPop = *PCpop[i].m_population;
                *PCpop[i].m_population = *PCpop[j].m_population;
                *PCpop[j].m_population = tempPop;
+
+               strcpy(tempPC, PCpop[i].m_PC);
+               strcpy(PCpop[i].m_PC, PCpop[j].m_PC);
+               strcpy(PCpop[j].m_PC, tempPC);
+            }
+            else if (*PCpop[i].m_population == *PCpop[j].m_population) {
+
+               if (strcmp(PCpop[i].m_PC, PCpop[j].m_PC) > 0) {
+
+                  strcpy(tempPC, PCpop[i].m_PC);
+                  strcpy(PCpop[i].m_PC, PCpop[j].m_PC);
+                  strcpy(PCpop[j].m_PC, tempPC);
+               }
             }
          }
       }
 
-      for (int i = 0; i < 15; i++) {
+      for (int i = 0; i < cnt.recordsCnt; i++) {
          cout << i + 1 << "- " << PCpop[i].m_PC << ":  " << *PCpop[i].m_population << endl;
          totalPop += *PCpop[i].m_population;
       }
 
       cout << "-------------------------" << endl;
-      cout << "Population of Canada : " << totalPop << endl;
+      cout << "Population of Canada: " << totalPop << endl;
    }
 
    void deallocateMemory() {
 
-      for (int i = 0; i < 15; i++) {
-         delete[] PCpop[i].m_PC;
-         PCpop[i].m_PC = nullptr;
+      for (int i = 0; i < cnt.recordsCnt; i++) {
          delete PCpop[i].m_population;
          PCpop[i].m_population = nullptr;
+
+         delete[] PCpop[i].m_PC;
+         PCpop[i].m_PC = nullptr;
+
       }
 
       delete[] PCpop;
