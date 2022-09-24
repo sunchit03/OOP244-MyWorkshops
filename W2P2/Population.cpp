@@ -62,6 +62,8 @@ namespace sdds {
          else {
             retVal = true;
          }
+
+         closeFile();
       }
       else {
          cout << "Could not open data file : " << filename << endl;
