@@ -11,7 +11,6 @@ Date     : September 21, 2022
 #include <iostream>
 #include "Assessment.h"
 #include "Utils.h"
-
 namespace sdds {
 
    // reads the value at the top of the file indicating the number of records

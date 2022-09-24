@@ -19,29 +19,11 @@ namespace sdds {
    PCpopulation* PCpop = nullptr;
    Counter cnt{};
    
-
-   //bool readPCP(PCpopulation& PCp, const char* filename) {
-   //   char tempStr[PC_CHARS + 1] = "";
-   //   int tempInt = 0;
-   //   bool retVal = false;
-
-   //   if (fscanf(fptr, "%[^,],%d\n", tempStr, &tempInt) == 2) {
-   //      PCp.m_PC = new char[strlen(tempStr) + 1];
-   //      PCp.m_population = new int(tempInt);
-   //      strcpy(PCp.m_PC, tempStr);
-
-   //      retVal = true;
-   //   }
-   //   return retVal;
-   //}
-
-
    bool load(const char* filename) {
 
       bool check = true;
       int count = 0;
       bool retVal{};
-      //int recCount;
       
       if (openFile(filename)) {
          cnt.recordsCnt = noOfRecords();
