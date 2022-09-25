@@ -2,7 +2,7 @@
 Full Name: Sunchit Singh
 Email    : sunchit-singh@myseneca.ca
 StudentID: 169146214
-Date     : September 21, 2022
+Date     : September 25, 2022
 */
 
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
@@ -17,23 +17,29 @@ using namespace std;
 namespace sdds {
 
    PCpopulation* PCpop = nullptr;
-   Counter cnt{};
+
+   int actualReads = 0;
    
    bool load(const char* filename) {
       bool check = true;
-      int count = 0;
       bool retVal{};
+      int records;
       
-      if (openFile(filename)) {
-         cnt.recordsCnt = noOfRecords();
-         PCpop = new PCpopulation[cnt.recordsCnt];
+      if (openFile(filename)) {                             // file successfully opened
+         records = noOfRecords();
+         PCpop = new PCpopulation[records];
 
-         for (int i = 0; i < cnt.recordsCnt && check; i++) {
-            check = readFile(PCpop[i], filename);
-            count = i;
+         for (int i = 0; i < records && check; i++) {
+            if (readFile(PCpop[i], filename)) {             // successfully read
+               actualReads++;
+               check = true;
+            }
+            else {                                          // failure
+               check = false;
+            }
          }
 
-         if (count != cnt.recordsCnt && !check) {
+         if (actualReads != records && !check) {            // records do not match
             cout << "Error: incorrect number of records read; the data is possibly corrupted!" << endl;
             retVal = false;
          }
@@ -58,9 +64,11 @@ namespace sdds {
       cout << "Postal Code: population" << endl;
       cout << "-------------------------" << endl;
 
-      for (int i = 0; i < cnt.recordsCnt; i++) {
 
-         for (int j = i + 1; j < cnt.recordsCnt; j++) {
+      // arranging in ascending order of population
+      for (int i = 0; i < actualReads; i++) {
+
+         for (int j = i + 1; j < actualReads; j++) {
             if (*PCpop[i].m_population > *PCpop[j].m_population) {
 
                tempPop = *PCpop[i].m_population;
@@ -73,6 +81,9 @@ namespace sdds {
             }
             else if (*PCpop[i].m_population == *PCpop[j].m_population) {
 
+               // in case of equal population
+               //arranging in alphabetical order of postal code
+               
                if (strcmp(PCpop[i].m_PC, PCpop[j].m_PC) > 0) {
 
                   strcpy(tempPC, PCpop[i].m_PC);
@@ -83,7 +94,7 @@ namespace sdds {
          }
       }
 
-      for (int i = 0; i < cnt.recordsCnt; i++) {
+      for (int i = 0; i < actualReads; i++) {
          cout << i + 1 << "- " << PCpop[i].m_PC << ":  " << *PCpop[i].m_population << endl;
          totalPop += *PCpop[i].m_population;
       }
@@ -94,7 +105,7 @@ namespace sdds {
 
    void deallocateMemory() {
 
-      for (int i = 0; i < cnt.recordsCnt; i++) {
+      for (int i = 0; i < actualReads; i++) {
          delete PCpop[i].m_population;
          PCpop[i].m_population = nullptr;
 

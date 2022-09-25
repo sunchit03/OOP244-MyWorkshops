@@ -47,9 +47,9 @@ namespace sdds {
       int tempInt = 0;
       bool retVal = false;
 
-      if (fscanf(fptr, "%[^,],%d\n", tempStr, &tempInt) == 2) {
-         PCp.m_PC = new char[strlen(tempStr) + 1];
-         PCp.m_population = new int(tempInt);
+      if (fscanf(fptr, "%[^,],%d\n", tempStr, &tempInt) == 2) {            // successfully read and stored
+         PCp.m_PC = new char[strlen(tempStr) + 1];                         // DMA
+         PCp.m_population = new int(tempInt);                              // DMA
          strcpy(PCp.m_PC, tempStr);
 
          retVal = true;
