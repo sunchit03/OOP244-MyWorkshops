@@ -15,7 +15,7 @@
 ***********************************************************************/
 #ifndef SDDS_FILE_H_
 #define SDDS_FILE_H_
-
+#include "Population.h"
 namespace sdds {
    // Opens a file and keeps the file pointer in the File.cpp (file scope)
    bool openFile(const char filename[]);
@@ -25,6 +25,6 @@ namespace sdds {
    // of the records in the file
    int noOfRecords();
 
-   extern FILE* fptr;
+   bool readFile(PCpopulation& PCp, const char* filename);
 }
 #endif // !SDDS_FILE_H_

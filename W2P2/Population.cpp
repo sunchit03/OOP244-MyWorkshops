@@ -20,7 +20,6 @@ namespace sdds {
    Counter cnt{};
    
    bool load(const char* filename) {
-
       bool check = true;
       int count = 0;
       bool retVal{};
@@ -30,7 +29,7 @@ namespace sdds {
          PCpop = new PCpopulation[cnt.recordsCnt];
 
          for (int i = 0; i < cnt.recordsCnt && check; i++) {
-            check = readPCP(PCpop[i], filename);
+            check = readFile(PCpop[i], filename);
             count = i;
          }
 

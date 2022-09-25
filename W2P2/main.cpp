@@ -19,7 +19,7 @@ using namespace sdds;
 // function to be created in part 2 of the lab
 
 int main() {
-   // if loading of the population recrods into the dynamic memroy is successful
+   // if loading of the population records into the dynamic memory is successful
    if (load("PCpopulations.csv")) {
       // display all the records
       display();

@@ -1,0 +1,26 @@
+/*
+Full Name: Sunchit Singh
+Email    : sunchit-singh@myseneca.ca
+StudentID: 169146214
+Date     : September 24, 2022
+*/
+
+This workshop broadened my understanding of the topic of dynamic allocation and
+deallocation. I found this workshop easier than the first one. I was able to quickly proceed
+through the functions, but there were a few things which kept me scratching my
+head. In order to successfully display the records and then deallocate them, I
+needed the total number of records, but I could not use the noOfRecords() function
+because the display() and deallocateMemory() functions do not have access to
+the file. Initially I hard-coded the value inorder to move on with the workshop.
+I wanted to somewhat globalize the total number of records so that I could
+use it in the display and deallocate functions. I did come up with a solution - of 
+creating a struct just to store the total number of records - but I do not think
+that it is the right way to do so. 
+
+struct Counter {
+      int recordsCnt;
+   };
+
+But, I couldn't think of any other way so I
+moved on with it. Then, while checking the feedback on matrix, it kept showing
+that there were memory leaks, I realised that I had missed the fclose function.

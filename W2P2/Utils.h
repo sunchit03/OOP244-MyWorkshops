@@ -24,8 +24,6 @@ namespace sdds {
    // resulting a cstring in des in any case
    void strcpy(char* des, const char* src, int len = -1);
    int strcmp(const char* s1, const char* s2);
-
-   bool readPCP(PCpopulation& PCp, const char* filename);
 }
 #endif // !SDDS_UTILS_H_
 

@@ -16,7 +16,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <cstdio>
 #include "File.h"
-//#include "Utils.h"
+#include "Utils.h"
 
 namespace sdds {
    FILE* fptr;
@@ -41,4 +41,19 @@ namespace sdds {
       if (fptr) fclose(fptr);
    }
 
+   // Reads from the file and dynamically allocates in case of success
+   bool readFile(PCpopulation& PCp, const char filename[]) {
+      char tempStr[PC_CHARS + 1] = "";
+      int tempInt = 0;
+      bool retVal = false;
+
+      if (fscanf(fptr, "%[^,],%d\n", tempStr, &tempInt) == 2) {
+         PCp.m_PC = new char[strlen(tempStr) + 1];
+         PCp.m_population = new int(tempInt);
+         strcpy(PCp.m_PC, tempStr);
+
+         retVal = true;
+      }
+      return retVal;
+   }
 }
