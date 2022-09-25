@@ -10,8 +10,7 @@ Date     : September 24, 2022
 #define _CRT_SECURE_NO_WARNINGS
 #include <cstdio>
 #include "Utils.h"
-#include "Population.h"
-#include "File.h"
+
 namespace sdds {
    int strlen(const char* str) {
       int len = 0;
