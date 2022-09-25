@@ -13,14 +13,28 @@ needed the total number of records, but I could not use the noOfRecords() functi
 because the display() and deallocateMemory() functions do not have access to
 the file. Initially I hard-coded the value inorder to move on with the workshop.
 I wanted to somewhat globalize the total number of records so that I could
-use it in the display and deallocate functions. I did come up with a solution - of 
-creating a struct just to store the total number of records - but I do not think
-that it is the right way to do so. 
+use it in the display and deallocate functions. So I created a global variable 
+inside the Populations.cpp file to store the total number of records, and
+incremented it with every successful read.
 
-struct Counter {
-      int recordsCnt;
-   };
+int actualReads = 0;
 
-But, I couldn't think of any other way so I
-moved on with it. Then, while checking the feedback on matrix, it kept showing
-that there were memory leaks, I realised that I had missed the fclose function.
+A snippet from my code - 
+
+records = noOfRecords();
+         PCpop = new PCpopulation[records];
+
+         for (int i = 0; i < records && check; i++) {
+            if (readFile(PCpop[i], filename)) {
+               actualReads++;
+               check = true;
+            }
+            else {
+               check = false;
+            }
+         }
+
+Then, while checking the feedback on matrix, it kept showing that there were
+memory leaks, I rechecked the deallocations, which seemed to be absolutely 
+correct. Later, I realised that I had forgot to add the fclose function, and 
+thus solved the issue with it.
