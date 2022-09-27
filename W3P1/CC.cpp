@@ -52,7 +52,14 @@ namespace sdds {
       third = (info.m_cardNo % 100000000) / 10000;
       fourth = info.m_cardNo % 10000;
 
-      cout << first << " " << second << " " << third << " " << fourth;
+      //printf("%04d %04d %04d %04d", first, second, third, fourth);
+
+      cout << setfill('0') << setw(4) << first << " ";
+      cout << setfill('0') << setw(4) << second << " ";
+      cout << setfill('0') << setw(4) << third << " ";
+      cout << setfill('0') << setw(4) << fourth;
+
+      //cout << first << " " << second << " " << third << " " << fourth;
    }
 
    void CC::set() {
@@ -136,9 +143,19 @@ namespace sdds {
       }
       else {
          if (row >= 1) {
-            cout << "| " << setw(3) << row << " | " << left << setw(30) << info.m_name << " | ";
+
+            //cout << "| " << right << setfill(' ') << setw(3) << row << " | " << left << setfill(' ') << setw(30) << info.m_name << " | ";
+
+
+            printf("| %3d | %-30.30s | ", row, info.m_name);
+
+            
             info.prnNumber();
-            cout << " | " << info.m_CVV << " | " << setw(2) << info.m_expMon << "/" << info.m_expYear << endl;
+            
+
+            //printf(" | %hu | %2hu/%hu |\n", info.m_CVV, info.m_expMon, info.m_expYear);
+
+            cout << " | " << info.m_CVV << " | " << right << setfill(' ') << setw(2) << info.m_expMon << "/" << info.m_expYear << " |" << endl;
          }
          else if (row <= 0)
          {
