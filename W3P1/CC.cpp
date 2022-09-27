@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <iomanip>
-#include <cstdio>
 #include "CC.h"
 #include "Utils.h"
 
@@ -14,28 +13,9 @@ namespace sdds {
    bool CC::validate(const char* name, unsigned long long cardNo, short cvv, short expMon, short expYear) const {
       bool retVal{};
 
-      if (name != nullptr && strlen(name) > 2) {
-         if (cardNo >= 4000000000000000 && cardNo <= 4099999999999999) {
-            if (cvv >= 100 && cvv <= 999) {
-               if (expMon >= 1 && expMon <= 12) {
-                  if (expYear >= 22 && expYear <= 32) {
-                     retVal = true;
-                  }
-                  else {
-                     retVal = false;
-                  }
-               }
-               else {
-                  retVal = false;
-               }
-            }
-            else {
-               retVal = false;
-            }
-         }
-         else {
-            retVal = false;
-         }
+      if ((name != nullptr && strlen(name) > 2) && (cardNo >= 4000000000000000 && cardNo <= 4099999999999999)
+         && (cvv >= 100 && cvv <= 999) && (expMon >= 1 && expMon <= 12) && (expYear >= 22 && expYear <= 32)) {
+         retVal = true;
       }
       else {
          retVal = false;
@@ -52,14 +32,10 @@ namespace sdds {
       third = (info.m_cardNo % 100000000) / 10000;
       fourth = info.m_cardNo % 10000;
 
-      //printf("%04d %04d %04d %04d", first, second, third, fourth);
-
       cout << setfill('0') << setw(4) << first << " ";
       cout << setfill('0') << setw(4) << second << " ";
       cout << setfill('0') << setw(4) << third << " ";
       cout << setfill('0') << setw(4) << fourth;
-
-      //cout << first << " " << second << " " << third << " " << fourth;
    }
 
    void CC::set() {
@@ -144,16 +120,18 @@ namespace sdds {
       else {
          if (row >= 1) {
 
-            //cout << "| " << right << setfill(' ') << setw(3) << row << " | " << left << setfill(' ') << setw(30) << info.m_name << " | ";
-
-
-            printf("| %3d | %-30.30s | ", row, info.m_name);
-
+            cout << "| " << right << setfill(' ') << setw(3) << row << " | ";
+            
+            if (strlen(info.m_name) >= 30) {
+               cout.write(info.m_name, 30);
+            }
+            else {
+               cout << left << setfill(' ') << setw(30);
+               cout << info.m_name;
+            }
+            cout << " | ";
             
             info.prnNumber();
-            
-
-            //printf(" | %hu | %2hu/%hu |\n", info.m_CVV, info.m_expMon, info.m_expYear);
 
             cout << " | " << info.m_CVV << " | " << right << setfill(' ') << setw(2) << info.m_expMon << "/" << info.m_expYear << " |" << endl;
          }
