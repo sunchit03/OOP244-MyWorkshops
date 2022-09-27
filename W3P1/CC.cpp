@@ -32,10 +32,10 @@ namespace sdds {
       third = (info.m_cardNo % 100000000) / 10000;
       fourth = info.m_cardNo % 10000;
 
-      cout << setfill('0') << setw(4) << first << " ";
-      cout << setfill('0') << setw(4) << second << " ";
-      cout << setfill('0') << setw(4) << third << " ";
-      cout << setfill('0') << setw(4) << fourth;
+      cout << right << setfill('0') << setw(4) << first << " ";
+      cout << right << setfill('0') << setw(4) << second << " ";
+      cout << right << setfill('0') << setw(4) << third << " ";
+      cout << right << setfill('0') << setw(4) << fourth;
    }
 
    void CC::set() {
@@ -74,8 +74,6 @@ namespace sdds {
       short tempExpMon;
       short tempExpYear;
       unsigned long long tempCardNo;
-
-      bool retVal = false;
 
       info.cleanUp();
 
