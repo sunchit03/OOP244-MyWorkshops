@@ -78,7 +78,7 @@ namespace sdds {
       info.cleanUp();
 
       cout << "Card holder name: ";
-      cin.getline(tempName, 71);
+      cin.getline(tempName, NAME_CHARS + 1);
       if (!cin.fail()) {
          cout << "Credit card number: ";
       }
@@ -99,11 +99,11 @@ namespace sdds {
       if (!cin.fail()) {
          info.set(tempName, tempCardNo, tempCVV, tempExpMon, tempExpYear);
 
-         cin.ignore(1000, '\n');
+         cin.ignore(10000, '\n');
       }
       else {
          cin.clear();
-         cin.ignore(1000, '\n');
+         cin.ignore(10000, '\n');
       }  
       
       return !info.isEmpty();

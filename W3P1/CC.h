@@ -3,7 +3,7 @@
 
 namespace sdds {
 
-   const int NAME_CHARS = 71;
+   const int NAME_CHARS = 70;
 
    class CC {
       char* m_name;
