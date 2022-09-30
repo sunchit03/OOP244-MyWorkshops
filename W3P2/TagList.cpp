@@ -8,7 +8,6 @@ Date     : September 28, 2022
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
 #include <iostream>
-#include <iomanip>
 #include "TagList.h"
 #include "NameTag.h"
 #include "Utils.h"
@@ -28,20 +27,15 @@ namespace sdds {
 
       tl.m_NT = new NameTag[num];
 
-      //tl.m_nameTags = new char[num][MAX_NAME_CHARS];
-
       tl.m_totalNames = num;
    }
 
    void TagList::add(const NameTag& nt) {
       
       strcpy(tl.m_NT[added].m_name, nt.m_name);
-      //strcpy(tl.m_NT[tl.m_added].m_name, "Baby Gerald");
+
       added ++;
 
-      /*for (int i = 0; i < tl.m_totalNames; i++) {
-         strcpy(tl.m_nt[i].m_name, nt.m_name);
-      }*/
    }
 
    void TagList::print() { 
@@ -61,7 +55,17 @@ namespace sdds {
             cout << "*";
          }
          cout << endl;
-         cout << "* " << left << setfill(' ') << setw(maxChars) << tl.m_NT[i].m_name << " *" << endl;
+
+         cout << "* ";
+
+         cout.width(maxChars);
+         cout.fill(' ');
+         cout.setf(ios::left);
+         cout << tl.m_NT[i].m_name << " *" << endl;
+
+         cout.fill(' ');
+         cout.unsetf(ios::left);
+
 
          for (int j = 0; j < maxChars + 4; j++) {
             cout << "*";

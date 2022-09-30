@@ -21,17 +21,6 @@ namespace sdds {
       nt.cleanup();
 
       strcpy(m_name, name);
-
-      /*for (int i = 0; i < strlen(name) + 4; i++) {
-         cout << "*";
-      }
-      cout << endl;
-      cout << "* " << name << " *" << endl;
-
-      for (int i = 0; i < strlen(name) + 4; i++) {
-         cout << "*";
-      }
-      cout << endl;*/
    }
 
    extern NameTag nt;
