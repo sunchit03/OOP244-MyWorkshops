@@ -1,0 +1,21 @@
+/*
+Full Name: Sunchit Singh
+Email    : sunchit-singh@myseneca.ca
+StudentID: 169146214
+Date     : October 3, 2022
+*/
+
+This workshop introduced the concept of classes to us. Their usage is very similar
+to structures, with the difference being of the accessibility of its members. 
+Initially, I was confused as to how the members could be private or public, and 
+while working on the workshop, I did face a slight trouble trying to access the 
+private members of the class, but eventually I was able to understand the usage.
+ 
+Another difficulty I faced was in the formatting of the output, specifically how 
+to justify the string or the number to the left or right side. When I first did 
+the lab part of the workshop, I used printf but I knew it wasn't the right 
+approach. I tried to find the solution online, which suggested me to use the 
+setw function (part of the iomanip library). That did give me the desired output,
+but I was not sure if we were allowed to use another library.
+Luckily, the professor discussed how to go about it in the workshop overview, 
+which helped me in completing the workshop.
