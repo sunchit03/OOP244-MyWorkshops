@@ -1,6 +1,9 @@
 #ifndef SDDS_SEAT_H_
 #define SDDS_SEAT_H_
 namespace sdds {
+
+   const int MAX_COLUMNS_CHARS = 40;
+
    class Seat {
    private:
       char* m_name;
@@ -36,7 +39,7 @@ namespace sdds {
 
       std::ostream& display(std::ostream& coutRef = std::cout)const;
 
-      //std::istream& read(std::istream& cinRef = std::cin);
+      std::istream& read(std::istream& cinRef = std::cin);
    };
 }
 #endif // !SDDS_SEAT_H_

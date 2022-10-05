@@ -48,7 +48,7 @@ namespace sdds {
    }
 
    bool Seat::assigned() const {
-      return validate(info.m_rownum, info.m_letter);
+      return validate(m_rownum, m_letter);
    }
 
    Seat::Seat() {
@@ -107,25 +107,14 @@ namespace sdds {
       if (isEmpty()) {
          cout << "Invalid Seat!";
       }
-      else if (strlen(m_name) > 40) {
-         /*char tempName[41]{};
-         strcpy(tempName, m_name);
-         cout << tempName;*/
-
-         cout.write(m_name, 40);
-
-         if (m_rownum == 0) {
-            cout << " ___";
-         }
-         else {
-            cout << " " << m_rownum << m_letter;
-         }
-      }
       else {
-         cout.width(40);
+         char tempName[MAX_COLUMNS_CHARS + 1]{};
+         strcpy(tempName, passenger(), MAX_COLUMNS_CHARS);
+
+         cout.width(MAX_COLUMNS_CHARS);
          cout.fill('.');
          cout.setf(ios::left);
-         cout << m_name;
+         cout << tempName;
 
          cout.fill(' ');
          cout.unsetf(ios::left);
@@ -134,13 +123,44 @@ namespace sdds {
             cout << " ___";
          }
          else {
-            cout << " " << m_rownum << m_letter;
+            cout << " " << row() << letter();
          }
       }
-      return cout;
+      return coutRef;
    }
 
-   /*std::istream& read(std::istream& cinRef = std::cin) {
-      return;
-   }*/
+   std::istream& Seat::read(std::istream& cinRef) {
+
+      reset();
+
+      char tempName[71]{};
+      int tempRownum = 0;
+      char tempLetter = 0;
+
+      if (!cinRef.eof()) {
+
+      cinRef.getline(tempName, 70, ',');
+      if (!cinRef.fail()) {
+         cinRef >> tempRownum;
+      }
+      else {
+
+      }
+
+      if (!cinRef.fail()) {
+         cinRef >> tempLetter;
+      }
+
+      if (!cinRef.fail()) {
+         cinRef.ignore(10000, '\n');
+
+         alAndCp(tempName);
+
+         if (m_name && m_name[0]) {
+            set(tempRownum, tempLetter);
+         }
+      }
+   }
+      return cinRef;
+   }
 }

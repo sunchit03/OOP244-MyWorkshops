@@ -23,7 +23,7 @@ void displayPassenger(const Seat& S, int row);
 void listSeatBookings();
 int main() {
    testSeatClass();
-   //listSeatBookings();
+   listSeatBookings();
    return 0;
 }
 void testSeatClass() {
@@ -58,7 +58,7 @@ void testSeatClass() {
    C.reset().display(cout << "       Seat gone (reset): ") << endl;
    cout << " Give the seat to luke's sister; enter following information:" << endl
       << "Leia Organa,12B<ENTER>" << endl;
-   //C.read();
+   C.read();
    cout << "you entered: " << endl;
    C.display(cout << "             Leia's seat: ") << endl;
    cout << "========================================================================" << endl;
@@ -90,7 +90,7 @@ void listSeatBookings() {
    ifstream passengers("passengers.csv");  // works exactly like cin, but for a file.
    Seat S;
    int cnt = 1;
-   /*while (S.read(passengers)) {
+   while (S.read(passengers)) {
       displayPassenger(S, cnt++);
-   }*/
+   }
 }
