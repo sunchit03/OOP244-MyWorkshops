@@ -1,3 +1,12 @@
+/*
+Full Name: Sunchit Singh
+Email    : sunchit-singh@myseneca.ca
+StudentID: 169146214
+Date     : October 3, 2022
+*/
+
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+// Re-submitting because forgot to add the declaration
 #include <iostream>
 #include "Seat.h"
 #include "Utils.h"
@@ -29,7 +38,6 @@ namespace sdds {
       }
 
       return *this;
-      // TODO: insert return statement here
    }
 
 
@@ -40,7 +48,6 @@ namespace sdds {
       m_letter = 0;
 
       return *this;
-      // TODO: insert return statement here
    }
 
    bool Seat::isEmpty() const {
@@ -142,9 +149,6 @@ namespace sdds {
       cinRef.getline(tempName, 70, ',');
       if (!cinRef.fail()) {
          cinRef >> tempRownum;
-      }
-      else {
-
       }
 
       if (!cinRef.fail()) {
