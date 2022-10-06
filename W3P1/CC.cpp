@@ -16,7 +16,7 @@ using namespace std;
 
 namespace sdds {
 
-   CC info{};
+   CC;
 
    bool CC::validate(const char* name, unsigned long long cardNo, short cvv, short expMon, short expYear) const {
       bool retVal{};
@@ -42,10 +42,10 @@ namespace sdds {
       int first, second, third, fourth;
 
       // dividing the 16 digit cc number into sets of 4
-      first = info.m_cardNo / 1000000000000;
-      second = (info.m_cardNo % 1000000000000) / 100000000;
-      third = (info.m_cardNo % 100000000) / 10000;
-      fourth = info.m_cardNo % 10000;
+      first = m_cardNo / 1000000000000;
+      second = (m_cardNo % 1000000000000) / 100000000;
+      third = (m_cardNo % 100000000) / 10000;
+      fourth = m_cardNo % 10000;
 
       cout << first << " ";
 
@@ -72,33 +72,33 @@ namespace sdds {
    void CC::set() {
 
       // safe initialization
-      info.m_name = nullptr;
-      info.m_cardNo = 0;
-      info.m_CVV = 0;
-      info.m_expMon = 0;
-      info.m_expYear = 0;
+      m_name = nullptr;
+      m_cardNo = 0;
+      m_CVV = 0;
+      m_expM = 0;
+      m_expY = 0;
    }
 
    void CC::cleanUp() {
-      delete[] info.m_name;         // deallocates dynmaic memory if any
-      info.set();
+      delete[] m_name;         // deallocates dynmaic memory if any
+      set();
    }
    
    bool CC::isEmpty() const {
       //returns true if struct is empty
-      return (info.m_name == nullptr);
+      return (m_name == nullptr);
    }
 
    void CC::set(const char* cc_name, unsigned long long cc_no, short m_cvv, short m_expMon, short m_expYear) {
       cleanUp();
-      if (info.validate(cc_name, cc_no, m_cvv, m_expMon, m_expYear)) {
-         info.m_name = new char[strlen(cc_name) + 1];
-         strcpy(info.m_name, cc_name);
+      if (validate(cc_name, cc_no, m_cvv, m_expMon, m_expYear)) {
+         m_name = new char[strlen(cc_name) + 1];
+         strcpy(m_name, cc_name);
 
-         info.m_cardNo = cc_no;
-         info.m_CVV = m_cvv;
-         info.m_expMon = m_expMon;
-         info.m_expYear = m_expYear;
+         m_cardNo = cc_no;
+         m_CVV = m_cvv;
+         m_expM = m_expMon;
+         m_expY = m_expYear;
       }
    }
 
@@ -109,7 +109,7 @@ namespace sdds {
       short tempExpYear;
       unsigned long long tempCardNo;
 
-      info.cleanUp();
+      cleanUp();
 
       cout << "Card holder name: ";
       cin.getline(tempName, NAME_CHARS);
@@ -131,7 +131,7 @@ namespace sdds {
       cin >> tempExpYear;
 
       if (!cin.fail()) {
-         info.set(tempName, tempCardNo, tempCVV, tempExpMon, tempExpYear);
+         set(tempName, tempCardNo, tempCVV, tempExpMon, tempExpYear);
 
          cin.ignore(10000, '\n');
       }
@@ -140,13 +140,13 @@ namespace sdds {
          cin.ignore(10000, '\n');
       }  
       
-      return !info.isEmpty();
+      return !isEmpty();
    }
 
 
    void CC::display(int row) const {
 
-      if (info.isEmpty()) {
+      if (isEmpty()) {
          cout << "Invalid Credit Card Record" << endl;
       }
       else {
@@ -162,46 +162,58 @@ namespace sdds {
             cout.fill(' ');
             cout.unsetf(ios::right);
 
+
+            char tempName[30 + 1] = "";
+            strcpy(tempName, m_name, 30);
+            cout.width(30);
+            cout.fill(' ');
+            cout.setf(ios::left);
+            cout << tempName;
+
+            cout.fill(' ');
+            cout.unsetf(ios::left);
+
+
             // formatting name display
-            if (strlen(info.m_name) >= 30) {
-               cout.write(info.m_name, 30);
+            /*if (strlen(m_name) >= 30) {
+               cout.write(m_name, 30);
             }
             else {
                cout.width(30);
                cout.fill(' ');
                cout.setf(ios::left);
-               cout << info.m_name;
+               cout << m_name;
 
                cout.fill(' ');
                cout.unsetf(ios::left);
-            }
+            }*/
             cout << " | ";
             
             // formatting cc number display
-            info.prnNumber();
+            prnNumber();
 
-            cout << " | " << info.m_CVV << " | ";
+            cout << " | " << m_CVV << " | ";
 
 
             // formatting expMonth and expYear display
             cout.width(2);
             cout.fill(' ');
             cout.setf(ios::right);
-            cout << info.m_expMon << "/" << info.m_expYear << " |" << endl;
+            cout << m_expM << "/" << m_expY << " |" << endl;
 
             cout.fill(' ');
             cout.unsetf(ios::right);
          }
          else if (row <= 0)
          {
-            cout << "Name: " << info.m_name << endl;
+            cout << "Name: " << m_name << endl;
             cout << "Creditcard No: ";
-            info.prnNumber();
+            prnNumber();
             cout << endl;
-            cout << "Card Verification Value: " << info.m_CVV << endl;
+            cout << "Card Verification Value: " << m_CVV << endl;
 
 
-            cout << "Expiry Date: " << info.m_expMon << "/" << info.m_expYear << endl;
+            cout << "Expiry Date: " << m_expM << "/" << m_expY << endl;
          }
       }
    }

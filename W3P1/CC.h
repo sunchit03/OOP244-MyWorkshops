@@ -17,8 +17,8 @@ namespace sdds {
    class CC {
       char* m_name;
       short m_CVV;
-      short m_expMon;
-      short m_expYear;
+      short m_expM;
+      short m_expY;
       unsigned long long m_cardNo;
 
    private:
