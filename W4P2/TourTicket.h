@@ -18,7 +18,7 @@
 #include <iostream>
 namespace sdds {
    class TourTicket {
-      char m_name[41];
+      char m_name[41] = "";
       int m_ticketNumber;
       void copyName(const char* str);
    public:
