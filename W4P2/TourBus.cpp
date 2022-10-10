@@ -4,22 +4,15 @@
 using namespace std;
 namespace sdds {
 
-
    TourBus::TourBus(int value) {
       m_size = value;
    }
 
-
-   bool TourBus::validTour() const
-   {
-      //bool flag = false;
-
+   bool TourBus::validTour() const {
       return (m_size == 4 || m_size == 16 || m_size == 22);
    }
 
-
-   TourBus& TourBus::board()
-   {
+   TourBus& TourBus::board() {
       char tempName[41];
       m_tt = new TourTicket[m_size];
       cout << "Boarding " << m_size << " Passengers:" << endl;
@@ -31,19 +24,13 @@ namespace sdds {
         
       }
       return *this;
-      // TODO: insert return statement here
    }
+
    void TourBus::startTheTour() const {
+      
       if (validTour()) {
 
-         int flag = 0;
-         for (int i = 0; i < m_size && flag == 0; i++) {
-            if (!m_tt) {
-               flag = 1;
-            }
-         }
-
-         if (flag == 0) {
+         if (m_tt) {
             cout << "Starting the tour...." << endl;
             cout << "Passenger List:" << endl;
             cout << "|Row | Passenger Name                           | Num |" << endl;
@@ -69,6 +56,5 @@ namespace sdds {
             cout << "Cannot start the tour, the bus is not fully boarded!" << endl;
          }
       }
-
    }
 }
