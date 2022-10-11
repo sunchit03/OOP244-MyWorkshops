@@ -1,3 +1,12 @@
+/*
+Full Name: Sunchit Singh
+Email    : sunchit-singh@myseneca.ca
+StudentID: 169146214
+Date     : October 10, 2022
+*/
+
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
 #include <iostream>
 #include "TourBus.h"
 #include "TourTicket.h"
@@ -9,7 +18,7 @@ namespace sdds {
    }
 
    bool TourBus::validTour() const {
-      return (m_size == 4 || m_size == 16 || m_size == 22);
+      return (m_size == privTour || m_size == miniTour || m_size == fullSize);
    }
 
    TourBus& TourBus::board() {
