@@ -1,0 +1,25 @@
+/*
+Full Name: Sunchit Singh
+Email    : sunchit-singh@myseneca.ca
+StudentID: 169146214
+Date     : October 10, 2022
+*/
+
+The lab part of the workshop was primarily based on the usage of constructors
+and destructors. The professor had explained the difference between constructors
+and functions really well, how the constructors call the functions and not
+vice-versa. The lab part also introduced the logic of using reference of objects
+such as classes or even the istream and ostream. And by this way, their use can
+be maximised.
+Using the concepts learnt during the lectures and the lab helped putting things
+together for the DIY part of the workshop. Initially, I found the DIY workshop
+a bit confusing. I could not understand this line in particular -
+	t = new TourBus(num);
+because t is an instance of the class and the allocation was of non-array type.
+But then looking through the lectures codes, I found a similar code and
+understood that this could be done with the use of a constructor with int type
+parameter.
+	TourBus::TourBus(int value) {
+      	m_size = value;
+   	}
+The remaining of the workshop was easier to build on.
