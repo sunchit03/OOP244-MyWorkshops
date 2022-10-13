@@ -122,7 +122,7 @@ void balancesDisplay(const Apartment* apt, int num) {
 int emptyApartments(const Apartment* apt, int num) {
    int sum = 0;
    for(int i = 0; i < num; i++) {
-      sum += apt[i] && ~apt[i]; 
+      sum += apt[i] && ~apt[i];
    }
    return sum;
 }

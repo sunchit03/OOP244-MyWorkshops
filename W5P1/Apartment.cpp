@@ -36,4 +36,95 @@ namespace sdds
       }
       return cout;
    }
+
+   Apartment::operator bool()const {
+      return (m_number >= 1000 && m_number <= 9999 && m_balance >= 0);
+   }
+
+   Apartment::operator int()const {
+      return m_number;
+   }
+
+   Apartment::operator double()const {
+      return m_balance;
+   }
+
+   bool Apartment::operator~()const {
+      return m_balance < 0.00001;
+   }
+
+   Apartment& Apartment::operator=(int rightOperand) {
+      if (rightOperand >= 1000 && rightOperand <= 9999) {
+         m_number = rightOperand;
+      }
+      else {
+         m_number = -1;
+         m_balance = 0.0;
+      }
+      return *this;
+   }
+
+   Apartment& Apartment::operator=(Apartment& rightOperand) {
+      int tempNumber = m_number;
+      m_number = rightOperand.m_number;
+      rightOperand.m_number = tempNumber;
+
+      double tempBalance = m_balance;
+      m_balance = rightOperand.m_balance;
+      rightOperand.m_balance = tempBalance;
+
+      return *this;
+   }
+
+   Apartment& Apartment::operator+=(double rightOperand) {
+      if (operator bool() && rightOperand >= 0) {
+         m_balance += rightOperand;
+      }
+      return *this;
+   }
+
+   Apartment& Apartment::operator-=(double rightOperand) {
+      if (operator bool() && rightOperand >= 0.0 && m_balance >= rightOperand) {
+         m_balance -= rightOperand;
+      }
+      return *this;
+   }
+
+   Apartment& Apartment::operator<<(Apartment& rightOperand) {
+      if (this != &rightOperand) {
+         if (rightOperand.operator bool()) {
+            operator+=(rightOperand.m_balance);
+            rightOperand.m_balance = 0.0;
+         }
+      }
+      return *this;
+   }
+
+   Apartment& Apartment::operator>>(Apartment& rightOperand) {
+      if (this != &rightOperand) {
+         if (operator bool()) {
+            rightOperand.operator+=(m_balance);
+            m_balance = 0.0;
+         }
+      }
+      return *this;
+   }
+
+   double Apartment::operator+(const Apartment& rightOperand)const {
+      double retVal = 0;
+      if (operator bool() && rightOperand.operator bool()) {
+         retVal = m_balance + rightOperand.m_balance;
+      }
+      return retVal;
+   }
+
+    double operator+=(double& leftOperand, const Apartment& rightOperand) {
+       if (rightOperand.operator bool()) {
+          leftOperand = leftOperand + rightOperand.operator double();
+       }
+       else {
+          leftOperand = 0;
+       }
+       return leftOperand;
+   }
 }
