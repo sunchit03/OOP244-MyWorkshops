@@ -11,6 +11,7 @@ Date     : October 17, 2022
 #include <cstring>
 #include <fstream>
 #include "Numbers.h"
+#include "Utils.h"
 using namespace std;
 namespace sdds {
 
