@@ -14,6 +14,8 @@ Date     : October 17, 2022
 using namespace std;
 namespace sdds {
 
+   Numbers tempNum;
+
 
    Numbers::Numbers() {
       setEmpty();
@@ -139,32 +141,16 @@ namespace sdds {
 
    Numbers Numbers::operator-() const {
       double temp;
-      //Sort the array in descending order
-      for (int i = 0; i < m_numCount; i++) {
-         for (int j = i + 1; j < m_numCount; j++) {
-            if (m_numbers[i] < m_numbers[j]) {
-               temp = m_numbers[i];
-               m_numbers[i] = m_numbers[j];
-               m_numbers[j] = temp;
-            }
-         }
-      }
-      return *this;
+      tempNum = *this;
+      tempNum.sort(false);
+      return tempNum;
    }
 
    Numbers Numbers::operator+() const {
       double temp;
-      //Sort the array in ascending order
-      for (int i = 0; i < m_numCount; i++) {
-         for (int j = i + 1; j < m_numCount; j++) {
-            if (m_numbers[i] > m_numbers[j]) {
-               temp = m_numbers[i];
-               m_numbers[i] = m_numbers[j];
-               m_numbers[j] = temp;
-            }
-         }
-      }
-      return *this;
+      tempNum = *this;
+      tempNum.sort(true);
+      return tempNum;
    }
 
    int Numbers::numberCount() const {
@@ -248,9 +234,34 @@ namespace sdds {
          }
          ostr << "-------------------------" << endl;
          ostr << "Total of " << m_numCount << " number(s)" << endl;
-         ostr << "Largest number: " << max() << endl;
-         ostr << "Smallest number: " << min() << endl;
-         ostr << "Average: " << average() << endl;
+         ostr.width(strlen("Smallest number: "));
+         ostr.fill(' ');
+         ostr.setf(ios::left);
+         ostr << "Largest number:";
+
+         ostr.setf(ios::fixed);
+         ostr.precision(2); 
+         ostr << max() << endl;
+
+
+         ostr.width(strlen("Smallest number: "));
+         ostr.fill(' ');
+         ostr.setf(ios::left);
+         ostr << "Smallest number:";
+
+         ostr.setf(ios::fixed);
+         ostr.precision(2); 
+         ostr << min() << endl;
+
+
+         ostr.width(strlen("Smallest number: "));
+         ostr.fill(' ');
+         ostr.setf(ios::left);
+         ostr << "Average:";
+
+         ostr.setf(ios::fixed);
+         ostr.precision(2); 
+         ostr << average() << endl;
          ostr << "=========================";
       }
       return ostr;
