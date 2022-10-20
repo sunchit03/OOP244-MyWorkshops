@@ -12,6 +12,7 @@ Date     : October 17, 2022
 #include <iostream>
 using namespace std;
 namespace sdds {
+
    class Numbers {
       double* m_numbers{};
       char* m_filename{};

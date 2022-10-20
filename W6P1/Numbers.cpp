@@ -11,12 +11,9 @@ Date     : October 17, 2022
 #include <cstring>
 #include <fstream>
 #include "Numbers.h"
-#include "Utils.h"
+
 using namespace std;
 namespace sdds {
-
-   Numbers tempNum;
-
 
    Numbers::Numbers() {
       setEmpty();
@@ -74,7 +71,6 @@ namespace sdds {
       delete[] m_filename;
       delete[] m_numbers;
    }
-
    void Numbers::setFilename(const char* filename) {
       delete[] m_filename;
       m_filename = new char[strlen(filename) + 1];
@@ -141,14 +137,15 @@ namespace sdds {
    }
 
    Numbers Numbers::operator-() const {
-      double temp;
+      Numbers tempNum;
       tempNum = *this;
-      tempNum.sort(false);
-      return tempNum;
+      /*tempNum.sort(false);
+      return tempNum;*/
+      return tempNum.sort(false);
    }
 
    Numbers Numbers::operator+() const {
-      double temp;
+      Numbers tempNum;
       tempNum = *this;
       tempNum.sort(true);
       return tempNum;
