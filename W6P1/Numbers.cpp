@@ -45,6 +45,7 @@ namespace sdds {
    Numbers& Numbers::operator=(const Numbers& toCopyFrom) {
       if (this != &toCopyFrom) {
          delete[] m_numbers;
+         delete[] m_filename;
          setEmpty();
          m_isOriginal = false;
          m_numbers = new double[toCopyFrom.m_numCount];
@@ -137,18 +138,15 @@ namespace sdds {
    }
 
    Numbers Numbers::operator-() const {
-      Numbers tempNum;
-      tempNum = *this;
+      Numbers tempNum = *this;
       /*tempNum.sort(false);
       return tempNum;*/
       return tempNum.sort(false);
    }
 
    Numbers Numbers::operator+() const {
-      Numbers tempNum;
-      tempNum = *this;
-      tempNum.sort(true);
-      return tempNum;
+      Numbers tempNum = *this;
+      return tempNum.sort(true);
    }
 
    int Numbers::numberCount() const {
@@ -202,6 +200,7 @@ namespace sdds {
 
          delete[] m_numbers;
          m_numbers = tempNumber;
+         //tempNumber = nullptr;
       }
       return *this;
    }
