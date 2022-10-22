@@ -30,11 +30,22 @@ namespace sdds {
    }
 
    Basket::Basket(const Basket& toCopyFrom) {
-
+      operator=(toCopyFrom);
    }
 
    Basket& Basket::operator=(const Basket& toCopyFrom) {
-      // TODO: insert return statement here
+      if (this != &toCopyFrom) {
+         delete[] m_fruits;
+         m_fruits = nullptr;
+         m_price = toCopyFrom.m_price;
+         m_size = toCopyFrom.m_size;
+
+         m_fruits = new Fruit[m_size];
+         for (int i = 0; i < m_size; i++) {
+            strcpy(m_fruits[i].m_name, toCopyFrom.m_fruits[i].m_name);
+            m_fruits[i].m_qty = toCopyFrom.m_fruits[i].m_qty;
+         }
+      }
       return *this;
    }
 
@@ -72,7 +83,7 @@ namespace sdds {
 
    ostream& operator<<(ostream& istr, const Basket& rightOperand)
    {
-      if (rightOperand.m_fruits) {
+      if (rightOperand.m_size) {
          istr << "Basket Content:" << endl;
 
          for (int i = 0; i < rightOperand.m_size; i++) {
