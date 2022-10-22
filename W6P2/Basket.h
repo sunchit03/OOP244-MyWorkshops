@@ -21,8 +21,8 @@ namespace sdds {
    class Basket {
    private:
       Fruit* m_fruits{};
-      int m_size;
-      double m_price;
+      int m_size = 0;
+      double m_price = 0;
 
    public:
       Basket();
@@ -33,8 +33,9 @@ namespace sdds {
       void setPrice(double price);
       operator bool();
       Basket& operator+=(const Fruit rightOperand);
+      friend ostream& operator<<(ostream& istr, const Basket& rightOperand);
    };
-   istream& operator<<(istream& istr, const Basket& rightOperand);
+   
 }
 
 #endif

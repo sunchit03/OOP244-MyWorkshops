@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="Basket.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Basket.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\OOP-Workshops\WS06\readme.md" />
