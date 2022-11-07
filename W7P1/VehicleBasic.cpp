@@ -52,8 +52,12 @@ namespace sdds
 	istream& VehicleBasic::read(istream& in) {
 		cout << "Built year: ";
 		in >> m_year;
-		cout << "License plate: ";
-		in.getline(m_license, 9, '\n');
+		if (!in.fail()) {
+			in.ignore(1000, '\n');
+			in.clear();
+			cout << "License plate: ";
+			in.getline(m_license, 9, '\n');
+		}
 		cout << "Current location: ";
 		in.getline(m_address, 64, '\n');
 		return in;
@@ -61,10 +65,12 @@ namespace sdds
 
 	ostream& operator<<(ostream& os, const VehicleBasic& rightOperand) {
 		rightOperand.write(os);
+		return os;
 	}
 
 	istream& operator>>(istream& in, VehicleBasic& rightOperand) {
 		rightOperand.read(in);
+		return in;
 	}
 
 }

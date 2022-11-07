@@ -10,11 +10,25 @@ Section: OOP244NBB
 #include <iostream>
 #include "VehicleBasic.h"
 
+using namespace std;
 namespace sdds
 {
-	
-	
-	
+	class Dumper : public VehicleBasic {
+	private:
+		double m_capacity;
+		double m_load;
+
+	public:
+		Dumper() = default;
+		Dumper(const char* license, int year, double capacity, const char* address);
+		bool loaddCargo(double cargo);
+		bool unloadCargo();
+		ostream& write(ostream& os)const;
+		istream& read(istream& in);
+	};
+
+	ostream& operator<< (ostream& os, const Dumper& rightOperand);
+	istream& operator>> (istream& in, Dumper& rightOperand);
 	
 }
 #endif
