@@ -1,0 +1,28 @@
+/*
+Name: Sunchit Singh
+Email: sunchit-singh@myseneca.ca
+Student ID: 169146214
+Date: November 11, 2022
+Section: OOP244NBB
+*/
+
+Workshop-7
+This workshop introduced the new concept of Inheritance. The topic was very well
+explained during the lecture by the professor so I did not face any sort of issue
+while doing this workshop.
+It did not take much time to complete this workshop because the methods of the two
+classes (parent- VehicleBasic and child- Dumper) were very similar in their
+implementation (for example - write, read, >> and << operators), and the child 
+class was to use some of the parent's class' methods to get the desired output.
+
+
+Milestone-1 & Milestone-2
+The first and the second part of the milestone revisited the concept of 
+constructors. In these milestone, I learnt about a new thing - enforcing that the 
+classes cannot be copied or assigned using the delete keyword in the particular 
+prototypes.
+In the milestone-2, I faced one issue while writing the code. I did not know how to
+initialize the parking and vehicle Menu objects, I tried to call the Menu 
+constructor, but it gave me compiling errors.
+So, I initialized the objects right at the time of the declaration, and it
+worked without giving any errors.

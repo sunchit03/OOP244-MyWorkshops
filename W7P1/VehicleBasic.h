@@ -9,7 +9,6 @@ Section: OOP244NBB
 #define SDDS_VehicleBasic_H
 #include<iostream>
 
-using namespace std;
 namespace sdds
 {
    class VehicleBasic {
@@ -21,12 +20,12 @@ namespace sdds
    public:
       VehicleBasic(const char* license, int year);
       void NewAddress(const char* address);
-      ostream& write(ostream& os)const;
-      istream& read(istream& in);
+      std::ostream& write(std::ostream& os)const;
+      std::istream& read(std::istream& in);
    };
 
-   ostream& operator<< (ostream& os, const VehicleBasic& rightOperand);
-   istream& operator>> (istream& in, VehicleBasic& rightOperand);
+   std::ostream& operator<< (std::ostream& os, const VehicleBasic& rightOperand);
+   std::istream& operator>> (std::istream& in, VehicleBasic& rightOperand);
 
 }
 

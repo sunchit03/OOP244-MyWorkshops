@@ -45,8 +45,14 @@ namespace sdds
 		VehicleBasic::read(in);
 		cout << "Capacity: ";
 		in >> m_capacity;
-		cout << "Cargo: ";
-		in >> m_load;
+
+		if (!in.fail()) {
+			in.ignore(1000, '\n');
+			in.clear();
+
+			cout << "Cargo: ";
+			in >> m_load;
+		}
 		return in;
 	}
 
