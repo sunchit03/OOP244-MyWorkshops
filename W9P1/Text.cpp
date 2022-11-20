@@ -13,11 +13,11 @@ Section: OOP244NBB
 namespace sdds {
 
    const char& Text::operator[](int index) const {
-      char retVal{};
+      /*char retVal{};
       if (m_content[index]) {
          retVal = m_content[index];
-      }
-      return retVal;
+      }*/
+      return m_content[index];
    }
 
    Text::Text() {
@@ -35,8 +35,9 @@ namespace sdds {
          m_content = nullptr;
 
          if (toCopyFrom.m_content && toCopyFrom.m_content[0]) {
-            m_content = new char[strlen(toCopyFrom.m_content) + 1];
-            strcpy(m_content, toCopyFrom.m_content);
+            m_content = alcpy(toCopyFrom.m_content);
+            /*m_content = new char[strlen(toCopyFrom.m_content) + 1];
+            strcpy(m_content, toCopyFrom.m_content);*/
          }
          //m_length = toCopyFrom.m_length;
       }
@@ -50,22 +51,40 @@ namespace sdds {
    std::istream& Text::read(std::istream& istr) {
       delete[] m_content;
       m_content = nullptr;
-      //m_length = getFileLength(istr);
-      m_content = new char [getFileLength(istr) + 1];
+
+      int length = getFileLength(istr);
+      
+      char* tempContent = new char[length + 1];
+
+      //m_content = new char [length + 1];
       int index = -1;
-      for (int i = 0; i < getFileLength(istr) && index < 0; i++) {
+      for (int i = 0; i < length && index < 0; i++) {
          char ch = ' ';
          
          if (istr.get(ch)) {
-            m_content[i] = ch;
+            tempContent[i] = ch;
+            //m_content[i] = ch;
          }
          else {
             index = i;
          }
       }
+      if (index >= 0) {
+         tempContent[index] = 0;
+         //m_content[index] = '\0';
+      }
+      else {
+         tempContent[length - 1] = 0;
+         //m_content[length - 1] = '\0';
+      }
+
+      m_content = alcpy(tempContent);
+      /*for (int i = 0; tempContent && i < strlen(tempContent); i++) {
+         m_content[i] = tempContent[i];
+      }*/
  
-      m_content[index] = '\0';
- 
+      delete[] tempContent;
+      tempContent = nullptr;
 
       if (m_content && m_content[0]) {
          istr.clear();
@@ -76,7 +95,9 @@ namespace sdds {
 
    std::ostream& Text::write(std::ostream& ostr) const {
       if (m_content) {
-         ostr << m_content;
+         for (int i = 0; i < strlen(m_content); i++) {
+            ostr << m_content[i];
+         }
       }
       return ostr;
    }

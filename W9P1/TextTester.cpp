@@ -9,6 +9,7 @@ Revision History
 Date       Reason
 -----------------------------------------------------------*/
 #include <iostream>
+#include <fstream>
 #include "HtmlText.h"
 #include "Text.h"
 using namespace std;
