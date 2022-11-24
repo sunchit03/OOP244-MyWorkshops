@@ -1,3 +1,13 @@
+/*
+Name: Sunchit Singh
+Email: sunchit-singh@myseneca.ca
+Student ID: 169146214
+Date: November 24, 2022
+Section: OOP244NBB
+*/
+
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
 #include "HtmlText.h"
 #include "Utils.h"
 namespace sdds {
@@ -21,6 +31,7 @@ namespace sdds {
 
    HtmlText::~HtmlText() {
       delete[] m_title;
+      m_title = nullptr;
    }
 
    std::ostream& HtmlText::write(std::ostream& ostr) const

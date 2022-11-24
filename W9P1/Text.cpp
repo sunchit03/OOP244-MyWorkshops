@@ -2,7 +2,7 @@
 Name: Sunchit Singh
 Email: sunchit-singh@myseneca.ca
 Student ID: 169146214
-Date: November 20, 2022
+Date: November 24, 2022
 Section: OOP244NBB
 */
 
@@ -26,6 +26,7 @@ namespace sdds {
 
    Text::Text(const Text& toCopyFrom) {
       delete[] m_content;
+      m_content = nullptr;
       operator=(toCopyFrom);
    }
 
@@ -36,16 +37,14 @@ namespace sdds {
 
          if (toCopyFrom.m_content && toCopyFrom.m_content[0]) {
             m_content = alcpy(toCopyFrom.m_content);
-            /*m_content = new char[strlen(toCopyFrom.m_content) + 1];
-            strcpy(m_content, toCopyFrom.m_content);*/
          }
-         //m_length = toCopyFrom.m_length;
       }
       return *this;
    }
 
    Text::~Text() {
       delete[] m_content;
+      m_content = nullptr;
    }
 
    std::istream& Text::read(std::istream& istr) {
@@ -53,38 +52,24 @@ namespace sdds {
       m_content = nullptr;
 
       int length = getFileLength(istr);
-      
-      char* tempContent = new char[length + 1];
 
-      //m_content = new char [length + 1];
-      int index = -1;
-      for (int i = 0; i < length && index < 0; i++) {
+      m_content = new char[length + 1];
+
+      bool flag = true;
+      for (int i = 0; i < length + 1 && flag; i++) {
          char ch = ' ';
-         
+
          if (istr.get(ch)) {
-            tempContent[i] = ch;
-            //m_content[i] = ch;
+            if (ch) {
+               m_content[i] = ch;
+            }
          }
          else {
-            index = i;
+            m_content[i] = 0;
+            flag = false;
          }
-      }
-      if (index >= 0) {
-         tempContent[index] = 0;
-         //m_content[index] = '\0';
-      }
-      else {
-         tempContent[length - 1] = 0;
-         //m_content[length - 1] = '\0';
-      }
 
-      m_content = alcpy(tempContent);
-      /*for (int i = 0; tempContent && i < strlen(tempContent); i++) {
-         m_content[i] = tempContent[i];
-      }*/
- 
-      delete[] tempContent;
-      tempContent = nullptr;
+      }
 
       if (m_content && m_content[0]) {
          istr.clear();
@@ -95,9 +80,7 @@ namespace sdds {
 
    std::ostream& Text::write(std::ostream& ostr) const {
       if (m_content) {
-         for (int i = 0; i < strlen(m_content); i++) {
-            ostr << m_content[i];
-         }
+         ostr << m_content;
       }
       return ostr;
    }

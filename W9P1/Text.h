@@ -2,7 +2,7 @@
 Name: Sunchit Singh
 Email: sunchit-singh@myseneca.ca
 Student ID: 169146214
-Date: November 20, 2022
+Date: November 24, 2022
 Section: OOP244NBB
 */
 
@@ -19,7 +19,6 @@ namespace sdds {
 
    protected:
       const char& operator[](int index)const;
-      //int m_length = 0;
 
    public:
       Text();
