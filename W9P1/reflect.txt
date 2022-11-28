@@ -7,6 +7,22 @@ Section: OOP244NBB
 */
 
 Workshop-9
-
+In this workshop, we were to implement the rule of 3 in both the base as well as the
+derived class and to make sure there was no memory leak while doing so. I took
+reference from the code that the professor had written to demonstrate successful
+copying and assignment. Out of the three methods shown by the professor, I chose the
+one where the copy constructor and assignment operators of the base class were 
+called in the respective methods of the derived class.
+While submitting the workshop, I faced some issues on matrix - 
+The first was that the ouput was slightly different on visual studio and matrix.
+The second error was a memory leak.
+I managed to solve the first issue, and for the second one I used valgrind to trace 
+the error which said that it was being caused by an unitialized value. It was an 
+off by one error.
 
 Milestone-4
+In this milestone, we have created two new classes - Car and Motorcycle, derived 
+from the Vehicles class. Both these classes had very similar functions which helped
+in completing the workshop quickly.
+Similar to the workshop-9, the rule of 3 was to be applied in the base and derived 
+classes. So, I applied the same method for this one as well.

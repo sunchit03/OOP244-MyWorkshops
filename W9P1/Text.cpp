@@ -13,10 +13,6 @@ Section: OOP244NBB
 namespace sdds {
 
    const char& Text::operator[](int index) const {
-      /*char retVal{};
-      if (m_content[index]) {
-         retVal = m_content[index];
-      }*/
       return m_content[index];
    }
 
